@@ -6,30 +6,29 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:45:22 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/22 17:19:04 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:57:03 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count(char const *s, char c)
+static size_t ft_count(char const *s, char c)
 {
-	unsigned int	word_count;
-	unsigned int	i;
-	
+	size_t word_count = 0;
+	int in_word = 0;
 
-	word_count = 0;
-	i = 0;
-	while (s[i] == c)
-		i++;
-	while (s[i])
-	{
- 		if (s[i] == c && s[i + 1] != c )
+	while (*s)
+    {
+		if (*s != c && in_word == 0)
+		{
+			in_word = 1;
 			word_count++;
-		i++;
+		}
+		else if (*s == c && in_word == 1)
+			in_word = 0;
+		s++;
 	}
-	printf("word_count:%d\n", word_count);
-	return (word_count);
+	return word_count;
 }
 
 char	**ft_split(char const *s, char c)
@@ -55,7 +54,9 @@ char	**ft_split(char const *s, char c)
 			lst[i++] = ft_substr(s - word_len, 0, word_len);
 			word_len = 0;
 		}
+		//printf("This is the 1. index: %c\n", s[0]);
 		s++;
+
 	}
 	lst[i++] = ft_substr(s - word_len, 0, word_len);
 	lst[i] = 0;
@@ -63,16 +64,12 @@ char	**ft_split(char const *s, char c)
 }
 int main()
 {
-	char s[] = "      This      is       no      an     ccc  ";
+	char s[] = "    This      is   a      test    string    ";
 	char **strings = ft_split(s,' ');
 	int i = 0;
-	printf("%s\n", strings[3]);
 	while(strings[i])
 	{
 		printf("%s[%i]\n",strings[i], i);
 		i++;
 	}
 }
-/* 		if (s[i] == c && s[i + 1] != c && i < ft_strlen(s))
-			word_count++;
-		i++; */
