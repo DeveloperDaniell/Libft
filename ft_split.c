@@ -6,70 +6,87 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:45:22 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/23 10:57:03 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:14:04 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t ft_count(char const *s, char c)
+static int	count_words(const char *s, char c)
 {
-	size_t word_count = 0;
-	int in_word = 0;
+	int	i;
+	int	flag;
 
+	i = 0;
+	flag = 0;
 	while (*s)
-    {
-		if (*s != c && in_word == 0)
+	{
+		if (*s != c && flag == 0)
 		{
-			in_word = 1;
-			word_count++;
+			flag = 1;
+			i++;
 		}
-		else if (*s == c && in_word == 1)
-			in_word = 0;
+		else if (*s == c)
+			flag = 0;
 		s++;
 	}
-	return word_count;
+	return (i);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	word_len;
 	size_t	i;
-	char	**lst;
+	size_t	j;
+	int		word_len;
+	char	**split;
 
 	if (!s)
 		return (0);
-	lst = (char **)malloc((ft_count(s, c) + 1) * sizeof(char *));
-	if (!lst)
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!split)
 		return (0);
-	i = 0;
+	i = -1;
+	j = 0;
 	word_len = 0;
-	while (*s)
+	while (++i <= ft_strlen(s))
 	{
-		if (*s != c && *s)
+		if (s[i] != c && s[i] != '\0')
 			word_len++;
-		if (*s == c && word_len > 0)
+		else if ((s[i] == c || i == ft_strlen(s)) && word_len > 0)
 		{
-			printf("|%s| and %i\n", (s - word_len), (int)word_len);
-			lst[i++] = ft_substr(s - word_len, 0, word_len);
+			split[j++] = ft_substr(&s[i - word_len], 0, word_len);
 			word_len = 0;
 		}
-		//printf("This is the 1. index: %c\n", s[0]);
-		s++;
-
 	}
-	lst[i++] = ft_substr(s - word_len, 0, word_len);
-	lst[i] = 0;
-	return (lst);
+	split[j] = 0;
+	return (split);
 }
-int main()
+/* void	ft_print_result(char const *s)
 {
-	char s[] = "    This      is   a      test    string    ";
-	char **strings = ft_split(s,' ');
-	int i = 0;
-	while(strings[i])
-	{
-		printf("%s[%i]\n",strings[i], i);
-		i++;
-	}
+	int		len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	write(1, s, len);
 }
+
+int		main()
+{
+	char	**tabstr;
+	int		i;
+	i = 0;
+
+		if (!(tabstr = ft_split("lorem ipsum dolor sit amet, 
+		consectetur adipiscing elit. Sed non risus. Suspendisse", ' ')))
+			ft_print_result("NULL");
+		else
+		{
+			while (tabstr[i] != NULL)
+			{
+				ft_print_result(tabstr[i]);
+				write(1, "\n", 1);
+				i++;
+			}
+		}
+} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djelacik <djelacik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 08:37:43 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/19 10:43:13 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:26:34 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
-	size_t	dstlen;
+	size_t	c;
+	size_t	d;
 
-	if (!dst || !src)
-		return (0);
-	dstlen = ft_strlen(dst);
-	if (dstsize != 0)
+	if (dstsize <= ft_strlen(dst))
+		return (dstsize + ft_strlen(src));
+	c = ft_strlen(dst);
+	d = 0;
+	while (src[d] != '\0' && c + 1 < dstsize)
 	{
-		while (i < dstsize - dstlen - 1 && src[i])
-		{
-			dst[dstlen + i] = src[i];
-			i++;
-		}
-		dst[dstlen + i] = '\0';
+		dst[c] = src[d];
+		c++;
+		d++;
 	}
-	return (ft_strlen(src) + ft_strlen(dst));
+	dst[c] = '\0';
+	return (ft_strlen(dst) + ft_strlen(&src[d]));
 }
 /* #include <stdio.h>
 int main()

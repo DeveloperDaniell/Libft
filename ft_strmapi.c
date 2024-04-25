@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 17:18:36 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/25 11:28:43 by djelacik         ###   ########.fr       */
+/*   Created: 2024/04/23 17:28:31 by djelacik          #+#    #+#             */
+/*   Updated: 2024/04/24 09:31:08 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	srcsize;
-	size_t	i;
+	char			*buffer;
+	unsigned int	i;
 
-	srcsize = ft_strlen(src);
+	if (!s || !f)
+		return (0);
+	buffer = ft_strdup(s);
+	if (!buffer)
+		return (NULL);
 	i = 0;
-	if (dstsize != 0)
+	while (buffer[i])
 	{
-		while (src[i] && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		buffer[i] = f(i, s[i]);
+		i++;
 	}
-	return (srcsize);
+	return (buffer);
 }
-/*
-#include <stdio.h>
+/* static char	ft_toup(unsigned int x, char c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	else
+		return (c);
+}
 int main()
 {
-	char src[] = "1234567";
-	char dest[20];
-
-	ft_strlcpy(dest, src, sizeof(dest));
-	printf("%s\n", dest);
-	return 0;
-}*/
+	char s[] = "This is a test string";
+	printf("%s\n", ft_strmapi(s, ft_toup));
+} */

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djelacik <djelacik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:19:27 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/19 14:48:46 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:22:56 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char
-	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*str;
 	char	*p;

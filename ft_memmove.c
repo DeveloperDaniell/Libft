@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:22:14 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/17 17:18:16 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:40:02 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	move_backward(unsigned char *d, const unsigned char *s, size_t len)
 	{
 		len--;
 		d[len] = s[len];
-		printf("%s\n", d);
 	}
 }
 
