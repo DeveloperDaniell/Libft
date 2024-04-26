@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:03:48 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/25 11:13:35 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:28:42 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ char	*ft_itoa(int n)
 	char	*buffer;
 	int		i;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	buffer = ft_calloc(get_len(n) + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	if (n == 0)
 		buffer[0] = '0';
 	i = get_len(n);
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n < 0)
 	{
 		*buffer = '-';
