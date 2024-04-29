@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 12:44:24 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/26 18:27:18 by djelacik         ###   ########.fr       */
+/*   Created: 2024/04/26 15:28:53 by djelacik          #+#    #+#             */
+/*   Updated: 2024/04/26 17:36:20 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
+	t_list	*new_node;
 
-	if (!s1 || !set)
-		return (0);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	i = ft_strlen(s1);
-	while (i && ft_strchr(set, s1[i]))
-		i--;
-	return (ft_substr(s1, 0, i + 1));
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->content = "Kartik";
+	new_node->next = NULL;
+	return (new_node);
 }
-int main()
+/* int main()
 {
-	char s[] = "     This is a test     ";
-	printf("%s\n", ft_strtrim(s, " "));
-}
+	t_list *head;
+	head = malloc(sizeof(t_list));
+	head = ft_lstnew("Hello");
+	printf("%s",head->content);
+	//printf("%s",(char *)head->next);
+} */

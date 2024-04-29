@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 12:44:24 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/26 18:27:18 by djelacik         ###   ########.fr       */
+/*   Created: 2024/04/26 15:54:07 by djelacik          #+#    #+#             */
+/*   Updated: 2024/04/26 16:31:04 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t	i;
 
-	if (!s1 || !set)
-		return (0);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	i = ft_strlen(s1);
-	while (i && ft_strchr(set, s1[i]))
-		i--;
-	return (ft_substr(s1, 0, i + 1));
-}
-int main()
-{
-	char s[] = "     This is a test     ";
-	printf("%s\n", ft_strtrim(s, " "));
+	if (!new)
+		return ;
+	new->content = *lst;
+	*lst = new;
 }

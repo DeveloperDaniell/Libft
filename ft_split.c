@@ -6,12 +6,11 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:45:22 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/26 10:31:27 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:33:52 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	count_words(const char *s, char c)
 {
@@ -36,17 +35,20 @@ static int	count_words(const char *s, char c)
 
 static void	*free_mem(char **word, char **start)
 {
-	while (word > start)
+	while (word >= start)
 	{
-		free(*(--word));
+		free(*(word));
 		*word = NULL;
+		word--;
 	}
-	(start);
+	free(start);
 	start = NULL;
 	return (NULL);
 }
 
-static char	**split_into_array(const char *s, char c, char **split)
+//static void	*test_free(int )
+
+static char	**split_array(const char *s, char c, char **split, char **start)
 {
 	size_t	i;
 	size_t	j;
@@ -64,7 +66,7 @@ static char	**split_into_array(const char *s, char c, char **split)
 			split[j] = ft_substr(s, i - word_len, word_len);
 			if (!split[j])
 			{
-				free_mem(split, split + j);
+				free_mem(&split[j], start);
 				return (NULL);
 			}
 			j++;
@@ -78,13 +80,15 @@ static char	**split_into_array(const char *s, char c, char **split)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
+	char	**start;
 
 	if (!s)
 		return (NULL);
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	if (!split_into_array(s, c, split))
+	start = split;
+	if (!split_array(s, c, split, start))
 		return (NULL);
 	return (split);
 }
