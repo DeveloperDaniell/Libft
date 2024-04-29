@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:44:24 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/26 18:27:18 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:36:55 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i--;
 	return (ft_substr(s1, 0, i + 1));
 }
-int main()
+/* int main()
 {
 	char s[] = "     This is a test     ";
 	printf("%s\n", ft_strtrim(s, " "));
-}
+} */

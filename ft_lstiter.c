@@ -1,63 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 18:28:56 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/29 17:36:30 by djelacik         ###   ########.fr       */
+/*   Created: 2024/04/29 15:21:54 by djelacik          #+#    #+#             */
+/*   Updated: 2024/04/29 17:44:32 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned int	i;
-
 	if (!lst)
-		return (0);
-	i = 0;
+		return ;
 	while (lst)
 	{
+		f(lst->content);
 		lst = lst->next;
-		i++;
 	}
-	return (i);
 }
-
-/* int main()
+/* void	print_content(void *content) {
+    printf("%s\n", (char *)content);
+}
+int main()
 {
-	t_list	*head;
+	t_list	*head = NULL;
 	t_list	*new;
+	t_list	*new_test;
+
 
 	new = malloc(sizeof(t_list));
 	if (!new)
 		return 1;
 	new->content = "First node";
 	new->next = NULL;
-	head = new;
-
+	ft_lstadd_back(&head, new);
+	
 	new = malloc(sizeof(t_list));
     if (new == NULL)
         return 1;
     new->content = "Second";
     new->next = NULL;
-    head->next = new;
+    ft_lstadd_back(&head, new);
 
 	new = malloc(sizeof(t_list));
     if (new == NULL)
         return 1;
     new->content = "Third";
     new->next = NULL;
-    head->next->next = new;
+    ft_lstadd_back(&head, new);
 
+	new_test = malloc(sizeof(t_list));
+	if (!new_test)
+		return 1;
+	new_test->content = "Test node";
+	new_test->next = NULL;
+	ft_lstadd_back(&head, new_test);
+	
 	t_list *current = head;
-	while(current != NULL)
-	{
-		printf("%s\n", (char *)current->content);
-		current = current->next;
-	}
-	printf("%d\n", ft_lstsize(head));
-} */
+	ft_lstiter(head, print_content);
+ } */

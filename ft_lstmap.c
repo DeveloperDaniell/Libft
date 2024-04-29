@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 15:28:53 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/29 15:30:55 by djelacik         ###   ########.fr       */
+/*   Created: 2024/04/29 15:58:07 by djelacik          #+#    #+#             */
+/*   Updated: 2024/04/29 17:45:44 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_node;
+	t_list	*new_list;
+	t_list	*node;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		node = ft_lstnew(f(lst->content));
+		if (!node)
+		{
+			ft_lstclear(&new_list, del);
+			return (0);
+		}
+		ft_lstadd_back(&new_list, node);
+		lst = lst->next;
+	}
+	return (new_list);
 }
-/* int main()
-{
-	t_list *head;
-	head = malloc(sizeof(t_list));
-	head = ft_lstnew("Hello");
-	printf("%s",head->content);
-	//printf("%s",(char *)head->next);
-} */
