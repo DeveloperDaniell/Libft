@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:28:53 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/26 17:36:20 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:04:12 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstnew(void *content)
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
-	new_node->content = "Kartik";
+	new_node->content = content;
 	new_node->next = NULL;
 	return (new_node);
 }

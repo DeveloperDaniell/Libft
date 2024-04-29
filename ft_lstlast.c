@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 20:13:08 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/28 20:37:03 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:32:34 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
-		return NULL;
+		return (NULL);
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
