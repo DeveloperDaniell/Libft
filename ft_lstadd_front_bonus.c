@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:05:23 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/29 14:32:26 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:14:02 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,4 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	return (0);
 	
 } */
+//atoi, calloc, count x size < max size

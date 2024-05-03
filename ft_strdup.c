@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:19:27 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/23 18:22:56 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:00:17 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *s1)
 	char	*str;
 	char	*p;
 
-	if (!s1)
-		return (NULL);
 	str = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
 	if (!str)
 		return (NULL);

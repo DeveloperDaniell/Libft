@@ -6,40 +6,41 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:12:06 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/29 17:52:54 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:37:10 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char	*h;
-	char	*n;
+	size_t	i;
+	size_t	j;
 
-	if (*needle == 0)
+	if (!*needle)
 		return ((char *)haystack);
-	n = (char *)needle;
-	while (*haystack)
+	i = 0;
+	while (haystack[i] && i < len)
 	{
-		h = (char *)haystack;
-		while (*haystack && *haystack && *haystack == *needle)
+		j = 0;
+		while (needle[j] && haystack[i + j] == needle[j] && i + j < len)
 		{
-			haystack++;
-			needle++;
+			j++;
 		}
-		if (!*needle)
-			return (h);
-		haystack = ++h;
-		needle = n;
+		if (!needle[j])
+			return ((char *)&haystack[i]);
+		i++;
 	}
 	return (NULL);
 }
 /* #include <stdio.h>
+#include <string.h>
 int main()
 {
-	char h[] = "This is the test haystack";
-	char n[] = "";
+	char h[] = "MZIRIBMZIRIBMZE123";
+	char n[] = "MZIRIBMZE";
 
-	printf("%s\n", ft_strstr(h, n));
+	printf("%s\n", ft_strnstr(h, n, 100));
+	printf("%s\n", strnstr(h, n, 100));
+
 } */

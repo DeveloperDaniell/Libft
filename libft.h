@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:19:56 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/29 18:04:53 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:36:35 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -45,7 +46,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char		*ft_strnstr(const char *haystack, const char *needle);
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_bzero(void *s, size_t n);

@@ -6,7 +6,7 @@
 /*   By: djelacik <djelacik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:57:35 by djelacik          #+#    #+#             */
-/*   Updated: 2024/04/25 17:07:08 by djelacik         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:48:15 by djelacik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*buffer;
 	size_t	total;
 
+	if (count != 0 && size > 18446744073709551615ULL / count)
+		return (NULL);
 	total = count * size;
-	if (count != 0 && total / count != size)
-		return (NULL);
-	if (total == 0)
-		return (NULL);
 	buffer = malloc(total);
 	if (!buffer)
 		return (NULL);
